@@ -111,8 +111,15 @@ minetest.register_craft( {
 -- cocoa definition
 local crop_def = {
 	drawtype = "nodebox",
-	tiles = {"farming_cocoa_1.png"},
+	tiles = {"farming_cocoa_1.png",
+	         "farming_cocoa_1.png",
+	         "farming_cocoa_1_side.png",
+	         "farming_cocoa_1_side.png",
+	         "farming_cocoa_1_side.png",
+	         "farming_cocoa_1_side.png",
+	},
 	paramtype = "light",
+	paramtype2 = "facedir",
 	walkable = false,
 	drop = {
 		items = {
@@ -122,27 +129,28 @@ local crop_def = {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.125, -0.0625, 0.1875, 0.125, 0.25, 0.4375},  -- Pod
-			-- FIXME: This has a thickness of 0. Is this OK in Minetest?
-			{0, 0.25, 0.25, 0, 0.5, 0.5},	-- Stem
+			{ -0.10, -0.10, -0.10, 0.10, 0.10, 0.10 },
 		},
 	},
 	collision_box = {
 		type = "fixed",
 		fixed = {
-			{-0.125, -0.0625, 0.1875, 0.125, 0.25, 0.4375},  -- Pod
+			{ -0.10, -0.10, -0.10, 0.10, 0.10, 0.10 },
 		},
 	},
 	selection_box = {
 		type = "fixed",
 		fixed = {
-			{-0.125, -0.0625, 0.1875, 0.125, 0.5, 0.5},  -- Pod
+			{ -0.10, -0.10, -0.10, 0.10, 0.10, 0.10 },
 		},
 	},
 	groups = {
 		snappy = 3, flammable = 2, plant = 1, growing = 1,
 		not_in_creative_inventory=1, leafdecay = 1, leafdecay_drop = 1
 	},
+	on_place = function(itemstack, placer, pointed_thing)
+    return farming.rotate_and_place(itemstack, placer, pointed_thing)
+  end,
 	sounds = default.node_sound_leaves_defaults(),
 	growth_check = function(pos, node_name)
 		if minetest.find_node_near(pos, 1, {"default:jungletree"}) then
@@ -151,21 +159,68 @@ local crop_def = {
 		return true
 	end,
 }
-
 -- stage 1
 minetest.register_node("farming:cocoa_1", table.copy(crop_def))
 
 -- stage 2
-crop_def.tiles = {"farming_cocoa_2.png"}
+crop_def.tiles = {"farming_cocoa_2.png",
+                  "farming_cocoa_2.png",
+                  "farming_cocoa_2_side.png",
+                  "farming_cocoa_2_side.png",
+                  "farming_cocoa_2_side.png",
+                  "farming_cocoa_2_side.png",
+}
+crop_def.node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.15, -0.15, -0.15, 0.15, 0.15, 0.15 },
+		},
+	}
+crop_def.collision_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.15, -0.15, -0.15, 0.15, 0.15, 0.15 },
+		},
+	}
+crop_def.selection_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.15, -0.15, -0.15, 0.15, 0.15, 0.15 },
+		},
+	}
 minetest.register_node("farming:cocoa_2", table.copy(crop_def))
 
 -- stage3
-crop_def.tiles = {"farming_cocoa_3.png"}
+crop_def.tiles = {"farming_cocoa_4.png",
+                  "farming_cocoa_4.png",
+                  "farming_cocoa_4_side.png",
+                  "farming_cocoa_4_side.png",
+                  "farming_cocoa_4_side.png",
+                  "farming_cocoa_4_side.png",
+}
 crop_def.drop = {
 	items = {
 		{items = {'farming:cocoa_beans 1'}, rarity = 1},
 	}
 }
+crop_def.node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.20, -0.20, -0.20, 0.20, 0.20, 0.20 },
+		},
+	}
+crop_def.collision_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.20, -0.20, -0.20, 0.20, 0.20, 0.20 },
+		},
+	}
+crop_def.selection_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.20, -0.20, -0.20, 0.20, 0.20, 0.20 },
+		},
+	}
 minetest.register_node("farming:cocoa_3", table.copy(crop_def))
 
 -- stage 4 (final)
@@ -185,6 +240,24 @@ crop_def.drop = {
 		{items = {'farming:cocoa_beans 1'}, rarity = 4},
 	}
 }
+crop_def.node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.25, -0.25, -0.25, 0.25, 0.25, 0.25 },
+		},
+	}
+crop_def.collision_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.25, -0.25, -0.25, 0.25, 0.25, 0.25 },
+		},
+	}
+crop_def.selection_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.25, -0.25, -0.25, 0.25, 0.25, 0.25 },
+		},
+	}
 minetest.register_node("farming:cocoa_4", table.copy(crop_def))
 
 -- add to registered_plants
