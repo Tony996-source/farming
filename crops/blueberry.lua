@@ -40,9 +40,8 @@ minetest.register_craft({
 	type = "shapeless",
 	recipe = {
 		"group:food_flour", "group:food_sugar",
-		"group:food_blueberries", "group:food_baking_tray"
+		"group:food_blueberries"
 	},
-	replacements = {{"group:food_baking_tray", "farming:baking_tray"}}
 })
 
 -- blueberry definition

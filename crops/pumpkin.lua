@@ -27,8 +27,7 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "shapeless",
 	output = "farming:pumpkin_slice 4",
-	recipe = {"farming:pumpkin", "farming:cutting_board"},
-	replacements = {{"farming:cutting_board", "farming:cutting_board"}},
+	recipe = {"farming:pumpkin"},
 })
 
 -- jack 'o lantern

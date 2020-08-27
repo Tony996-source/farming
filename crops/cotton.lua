@@ -27,11 +27,6 @@ minetest.register_craftitem("farming:cotton", {
 	groups = {flammable = 4},
 })
 
-minetest.register_craftitem("farming:string", {
-	description = S("String"),
-	inventory_image = "farming_string.png",
-	groups = {flammable = 2},
-})
 
 -- cotton to wool
 minetest.register_craft({
@@ -42,21 +37,7 @@ minetest.register_craft({
 	}
 })
 
--- cotton to string
-minetest.register_craft({
-	output = "farming:string 2",
-	recipe = {
-		{"farming:cotton"},
-		{"farming:cotton"},
-	}
-})
-
 -- can be used as fuel
-minetest.register_craft({
-	type = "fuel",
-	recipe = "farming:string",
-	burntime = 1,
-})
 
 minetest.register_craft({
 	type = "fuel",

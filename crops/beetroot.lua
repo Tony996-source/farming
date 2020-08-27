@@ -12,24 +12,6 @@ minetest.register_craftitem("farming:beetroot", {
 	on_use = minetest.item_eat(1),
 })
 
--- beetroot soup
-minetest.register_craftitem("farming:beetroot_soup", {
-	description = S("Beetroot Soup"),
-	inventory_image = "farming_beetroot_soup.png",
-	groups = {flammable = 2},
-	on_use = minetest.item_eat(6, "farming:bowl"),
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "farming:beetroot_soup",
-	recipe = {
-		"group:food_beetroot", "group:food_beetroot",
-		"group:food_beetroot", "group:food_beetroot",
-		"group:food_beetroot", "group:food_beetroot","group:food_bowl"
-	}
-})
-
 -- red dye
 minetest.register_craft({
 	type = "shapeless",
